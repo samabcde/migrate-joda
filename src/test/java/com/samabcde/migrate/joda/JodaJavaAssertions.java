@@ -74,8 +74,4 @@ public class JodaJavaAssertions {
         assertEquals(joda.getMillis(), java.toMillis());
     }
 
-    static void assertJodaEqualsJava(org.joda.time.format.DateTimeFormatter jodaFormatter, java.time.format.DateTimeFormatter javaFormatter) {
-        assertJodaEqualsJava(org.joda.time.LocalDate.parse("", jodaFormatter), java.time.LocalDate.parse("", javaFormatter));
-
-    }
 }
