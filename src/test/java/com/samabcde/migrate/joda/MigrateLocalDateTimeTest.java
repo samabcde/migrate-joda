@@ -1,4 +1,4 @@
-package com.samabcde;
+package com.samabcde.migrate.joda;
 
 import org.joda.time.DateTimeFieldType;
 import org.joda.time.DateTimeUtils;
@@ -6,6 +6,7 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.DurationFieldType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 import org.junitpioneer.jupiter.DefaultTimeZone;
 
 import java.time.Clock;
@@ -16,9 +17,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.TimeZone;
 
-import static com.samabcde.JodaJavaAssertions.assertJodaEqualsJava;
+import static com.samabcde.migrate.joda.JodaJavaAssertions.assertJodaEqualsJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DefaultLocale("en-US")
 @DefaultTimeZone("UTC")
 public class MigrateLocalDateTimeTest {
     private Clock clock;
@@ -63,5 +65,13 @@ public class MigrateLocalDateTimeTest {
         assertJodaEqualsJava(jodaLocalDateTime.toDateTime(jodaDateTimeZone), javaLocalDateTime.atZone(javaZoneId));
         assertJodaEqualsJava(jodaLocalDateTime.toLocalDate(), javaLocalDateTime.toLocalDate());
         assertJodaEqualsJava(jodaLocalDateTime.toLocalTime(), javaLocalDateTime.toLocalTime());
+    }
+
+    @Test
+    void format() {
+        org.joda.time.LocalDateTime jodaLocalDateTime = new org.joda.time.LocalDateTime(1945, 9, 2, 23, 59, 59);
+        java.time.LocalDateTime javaLocalDateTime = java.time.LocalDateTime.of(1945, 9, 2, 23, 59, 59);
+        // DateTimeFormatter.ISO_LOCAL_DATE_TIME will skip 0 of nanosecond
+        assertEquals(jodaLocalDateTime.toString(), javaLocalDateTime.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")));
     }
 }

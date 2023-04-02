@@ -6,9 +6,16 @@ Read to get a brief idea: https://blog.joda.org/2014/11/converting-from-joda-tim
 
 Check below for the target class you are migrating
 
-- [LocalDate](src/test/java/com/samabcde/MigrateLocalDateTest.java)
-- [LocalDateTime](src/test/java/com/samabcde/MigrateLocalDateTimeTest.java)
-- [LocalTime](src/test/java/com/samabcde/MigrateLocalTimeTest.java)
-- [Period](src/test/java/com/samabcde/MigratePeriodTest.java)
-- [Duration](src/test/java/com/samabcde/MigrateDurationTest.java)
-- DateTimeFormatter(WIP)
+- [LocalDate](src/test/java/com/samabcde/migrate/joda/MigrateLocalDateTest.java)  
+- [LocalDateTime](src/test/java/com/samabcde/migrate/joda/MigrateLocalDateTimeTest.java)
+- [LocalTime](src/test/java/com/samabcde/migrate/joda/MigrateLocalTimeTest.java)
+- [DateTime](src/test/java/com/samabcde/migrate/joda/MigrateDateTimeTest.java)
+- [Period](src/test/java/com/samabcde/migrate/joda/MigratePeriodTest.java)
+- [Duration](src/test/java/com/samabcde/migrate/joda/MigrateDurationTest.java)
+- [DateTimeFormatter](src/test/java/com/samabcde/migrate/joda/MigrateDateTimeFormatterTest.java)  
+  Pattern in Joda and Java has subtle difference, e.g.(Joda 'Y' vs Java 'Y')
+  So do checkout [Joda DateTimeFormat](https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat)  
+  and [Java DateTimeFormatter](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html)
+  for details.
+
+Feel free to raise PR for adding useful cases, or issue if you find something wrong.

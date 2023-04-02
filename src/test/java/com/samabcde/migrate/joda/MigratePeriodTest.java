@@ -1,8 +1,8 @@
-package com.samabcde;
+package com.samabcde.migrate.joda;
 
 import org.junit.jupiter.api.Test;
 
-import static com.samabcde.JodaJavaAssertions.assertJodaEqualsJava;
+import static com.samabcde.migrate.joda.JodaJavaAssertions.assertJodaEqualsJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

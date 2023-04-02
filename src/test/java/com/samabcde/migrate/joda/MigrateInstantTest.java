@@ -1,22 +1,26 @@
-package com.samabcde;
+package com.samabcde.migrate.joda;
+
 import org.joda.time.DateTimeFieldType;
 import org.joda.time.DateTimeUtils;
 import org.joda.time.DateTimeZone;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 import org.junitpioneer.jupiter.DefaultTimeZone;
 
 import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Date;
 import java.util.TimeZone;
 
-import static com.samabcde.JodaJavaAssertions.assertJodaEqualsJava;
+import static com.samabcde.migrate.joda.JodaJavaAssertions.assertJodaEqualsJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@DefaultLocale("en-US")
 @DefaultTimeZone("UTC")
 public class MigrateInstantTest {
     private Clock clock;
@@ -24,6 +28,7 @@ public class MigrateInstantTest {
     private final TimeZone testTimeZone = TimeZone.getTimeZone("Asia/Abidjan");
     private final DateTimeZone jodaDateTimeZone = DateTimeZone.forTimeZone(testTimeZone);
     private final ZoneId javaZoneId = testTimeZone.toZoneId();
+
     @BeforeEach
     void setup() {
         DateTimeUtils.setCurrentMillisFixed(0);
@@ -62,5 +67,13 @@ public class MigrateInstantTest {
         java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(987654321L);
         assertJodaEqualsJava(jodaInstant.toDateTime(), javaInstant.atZone(ZoneId.systemDefault()));
         assertJodaEqualsJava(jodaInstant.toDateTime(jodaDateTimeZone), javaInstant.atZone(javaZoneId));
+    }
+
+    @Test
+    void format() {
+        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654000L);
+        java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(987654000L);
+        // java.time.Instant.toString() will omit 0 in nanosecond
+        assertEquals(jodaInstant.toString(), javaInstant.atZone(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX")));
     }
 }

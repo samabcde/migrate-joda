@@ -1,13 +1,11 @@
-package com.samabcde;
+package com.samabcde.migrate.joda;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
-import static com.samabcde.JodaJavaAssertions.assertJodaEqualsJava;
+import static com.samabcde.migrate.joda.JodaJavaAssertions.assertJodaEqualsJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MigrateDurationTest {
 
@@ -31,7 +29,6 @@ public class MigrateDurationTest {
         assertJodaEqualsJava(jodaDuration.withDurationAdded(1, 1000), javaDuration.plus(1, ChronoUnit.SECONDS));
         assertJodaEqualsJava(jodaDuration.withDurationAdded(1, 60000), javaDuration.plus(1, ChronoUnit.MINUTES));
         assertJodaEqualsJava(jodaDuration.plus(1), javaDuration.plus(1, ChronoUnit.MILLIS));
-
     }
 
 }
