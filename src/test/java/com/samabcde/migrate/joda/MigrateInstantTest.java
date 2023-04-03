@@ -70,6 +70,13 @@ public class MigrateInstantTest {
     }
 
     @Test
+    void incompatible() {
+        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654321L);
+        // There should not be any zone info for Instant
+        jodaInstant.getZone();
+    }
+
+    @Test
     void format() {
         org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654000L);
         java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(987654000L);

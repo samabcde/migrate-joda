@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 
 import static com.samabcde.migrate.joda.JodaJavaAssertions.assertJodaEqualsJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class MigrateDurationTest {
 
@@ -29,6 +30,16 @@ public class MigrateDurationTest {
         assertJodaEqualsJava(jodaDuration.withDurationAdded(1, 1000), javaDuration.plus(1, ChronoUnit.SECONDS));
         assertJodaEqualsJava(jodaDuration.withDurationAdded(1, 60000), javaDuration.plus(1, ChronoUnit.MINUTES));
         assertJodaEqualsJava(jodaDuration.plus(1), javaDuration.plus(1, ChronoUnit.MILLIS));
+    }
+
+    @Test
+    void incompatible() {
+        org.joda.time.Duration jodaDuration = org.joda.time.Duration.millis(86400001);
+        java.time.Duration javaDuration = java.time.Duration.ofMillis(86400001);
+        // java will standardize the value
+        // joda PT86400.001S
+        // java PT24H0.001S
+        assertNotEquals(jodaDuration.toString(), javaDuration.toString());
     }
 
 }

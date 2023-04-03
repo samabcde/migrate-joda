@@ -1,7 +1,7 @@
 # Migration from Joda to Java Time
 
 Repository to make migration from Joda to Java Time API more easy
-My [blog post ](https://samabcde.blogspot.com/2023/04/migrate-from-joda-to-javajsr-310.html) for the whole story.
+My [blog post](https://samabcde.blogspot.com/2023/04/migrate-from-joda-to-javajsr-310.html) for the whole story.
 
 Read to get a brief idea: https://blog.joda.org/2014/11/converting-from-joda-time-to-javatime.html
 
