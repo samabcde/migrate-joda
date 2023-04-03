@@ -64,8 +64,8 @@ public class MigrateLocalTimeTest {
 
     @Test
     void format() {
-        org.joda.time.LocalTime jodaLocalTime = new org.joda.time.LocalTime(23, 59, 59,10);
-        java.time.LocalTime javaLocalTime = java.time.LocalTime.of(23, 59, 59,10000000);
+        org.joda.time.LocalTime jodaLocalTime = new org.joda.time.LocalTime(23, 59, 59, 10);
+        java.time.LocalTime javaLocalTime = java.time.LocalTime.of(23, 59, 59, 10000000);
         // DateTimeFormatter.ISO_LOCAL_TIME will skip 0 of nanosecond
         assertEquals(jodaLocalTime.toString(), javaLocalTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss.SSS")));
     }

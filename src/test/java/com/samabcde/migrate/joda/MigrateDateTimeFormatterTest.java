@@ -57,7 +57,7 @@ public class MigrateDateTimeFormatterTest {
             yyyy-MM-dd'T'HH:mmZ,yyyy-MM-dd'T'HH:mmxxxx
             yyyy-MM-dd'T'HH:mmZZ,yyyy-MM-dd'T'HH:mmxxxxx
             """)
-    // joda ZZZ always show "UTC" but java show Z
+        // joda ZZZ always show "UTC" but java show Z
     void zoneInUTC(String jodaPattern, String javaPattern) {
         org.joda.time.format.DateTimeFormatter jodaFormat = org.joda.time.format.DateTimeFormat.forPattern(jodaPattern);
         java.time.format.DateTimeFormatter javaFormat = java.time.format.DateTimeFormatter.ofPattern(javaPattern);
