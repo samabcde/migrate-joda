@@ -17,6 +17,10 @@ public class MigrateDurationTest {
         assertJodaEqualsJava(org.joda.time.Duration.standardMinutes(78), java.time.Duration.ofMinutes(78));
         assertJodaEqualsJava(org.joda.time.Duration.standardSeconds(480), java.time.Duration.ofSeconds(480));
         assertJodaEqualsJava(org.joda.time.Duration.millis(86400000), java.time.Duration.ofMillis(86400000));
+        assertJodaEqualsJava(new org.joda.time.Duration(org.joda.time.Instant.ofEpochMilli(1), org.joda.time.Instant.ofEpochMilli(2)),
+                java.time.Duration.between(java.time.Instant.ofEpochMilli(1), java.time.Instant.ofEpochMilli(2)));
+        assertJodaEqualsJava(new org.joda.time.Duration(10, 20), java.time.Duration.between(java.time.Instant.ofEpochMilli(10), java.time.Instant.ofEpochMilli(20)));
+        assertJodaEqualsJava(new org.joda.time.Duration(100), java.time.Duration.ofMillis(100));
     }
 
     @Test
