@@ -38,7 +38,7 @@ public class MigrateInstantTest {
     @Test
     void construction() {
         assertJodaEqualsJava(new org.joda.time.Instant(), java.time.Instant.now(clock));
-        assertJodaEqualsJava(new org.joda.time.Instant(987654321L), java.time.Instant.ofEpochMilli(987654321L));
+        assertJodaEqualsJava(new org.joda.time.Instant(612921600000L), java.time.Instant.ofEpochMilli(612921600000L));
         assertJodaEqualsJava(org.joda.time.Instant.parse("2022-01-01T01:23:45+01:00"), java.time.Instant.parse("2022-01-01T01:23:45+01:00"));
         assertJodaEqualsJava(org.joda.time.Instant.now(), java.time.Instant.now(clock));
         assertJodaEqualsJava(org.joda.time.Instant.EPOCH, java.time.Instant.EPOCH);
@@ -46,8 +46,8 @@ public class MigrateInstantTest {
 
     @Test
     void api() {
-        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654321L);
-        java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(987654321L);
+        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(612921600000L);
+        java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(612921600000L);
 
         assertNotEquals(jodaInstant.isSupported(DateTimeFieldType.dayOfMonth()), javaInstant.isSupported(ChronoField.DAY_OF_MONTH));
         assertNotEquals(jodaInstant.isSupported(DateTimeFieldType.millisOfDay()), javaInstant.isSupported(ChronoField.MILLI_OF_DAY));
@@ -63,15 +63,15 @@ public class MigrateInstantTest {
 
     @Test
     void conversion() {
-        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654321L);
-        java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(987654321L);
+        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(612921600000L);
+        java.time.Instant javaInstant = java.time.Instant.ofEpochMilli(612921600000L);
         assertJodaEqualsJava(jodaInstant.toDateTime(), javaInstant.atZone(ZoneId.systemDefault()));
         assertJodaEqualsJava(jodaInstant.toDateTime(jodaDateTimeZone), javaInstant.atZone(javaZoneId));
     }
 
     @Test
     void incompatible() {
-        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(987654321L);
+        org.joda.time.Instant jodaInstant = new org.joda.time.Instant(612921600000L);
         // There should not be any zone info for Instant
         jodaInstant.getZone();
     }

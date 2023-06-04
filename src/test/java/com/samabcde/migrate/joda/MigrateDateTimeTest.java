@@ -43,7 +43,7 @@ public class MigrateDateTimeTest {
         assertJodaEqualsJava(new DateTime(1989, 6, 4, 1, 2, 3, jodaDateTimeZone), ZonedDateTime.of(1989, 6, 4, 1, 2, 3, 0, javaZoneId));
         assertJodaEqualsJava(new DateTime(1989, 6, 4, 1, 2, 3, 4), ZonedDateTime.of(1989, 6, 4, 1, 2, 3, 4000000, ZoneOffset.systemDefault()));
         assertJodaEqualsJava(new DateTime(1989, 6, 4, 1, 2, 3, 4, jodaDateTimeZone), ZonedDateTime.of(1989, 6, 4, 1, 2, 3, 4000000, javaZoneId));
-        assertJodaEqualsJava(new DateTime(987654321L), ZonedDateTime.ofInstant(java.time.Instant.ofEpochMilli(987654321L), ZoneId.systemDefault()));
+        assertJodaEqualsJava(new DateTime(612921600L), ZonedDateTime.ofInstant(java.time.Instant.ofEpochMilli(612921600L), ZoneId.systemDefault()));
         assertJodaEqualsJava(DateTime.parse("2022-01-01T01:23:45+01:00"), ZonedDateTime.parse("2022-01-01T01:23:45+01:00"));
         assertJodaEqualsJava(DateTime.now(), ZonedDateTime.now(clock));
         assertJodaEqualsJava(DateTime.now(DateTimeZone.UTC), ZonedDateTime.now(clock).withZoneSameInstant(ZoneOffset.UTC));
